@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialogLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/inputField1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Which app do you wish to use?"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_text_color" />
+
+    <EditText
+        android:id="@+id/inputField2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="For how long?"
+        android:inputType="text"
+
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_text_color" />
+
+    <EditText
+        android:id="@+id/inputField3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="For what purpose?"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_text_color" />
+
+
+</LinearLayout>
