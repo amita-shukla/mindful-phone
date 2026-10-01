@@ -41,6 +41,15 @@
         android:text="@string/enable_monitoring" />
 
     <Button
+        android:id="@+id/stopPromptsButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/stop_unlock_prompts"
+        android:visibility="gone" />
+
+    <Button
         android:id="@+id/testPromptButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"

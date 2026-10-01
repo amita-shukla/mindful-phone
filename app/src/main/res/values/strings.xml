@@ -8,6 +8,8 @@
     <string name="grant_battery">Turn off battery optimization (recommended)</string>
     <string name="enable_monitoring">Turn on unlock prompts</string>
     <string name="restart_monitoring">Restart unlock prompts</string>
+    <string name="stop_unlock_prompts">Turn off unlock prompts</string>
+    <string name="setup_stopped">Unlock prompts are off.</string>
     <string name="prompt_title">Why are you opening your phone?</string>
     <string name="prompt_subtitle">Naming it helps you stay in control.</string>
     <string name="motive_hint">Add a short reason…</string>
@@ -18,5 +20,5 @@
     <string name="notification_channel_description">Keeps unlock prompts working in the background</string>
     <string name="notification_title">Mindful is on</string>
     <string name="notification_text">You\'ll get a prompt when you unlock your phone</string>
-    <string name="test_prompt">Preview unlock</string>
+    <string name="test_prompt">Preview prompt</string>
 </resources>

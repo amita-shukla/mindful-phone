@@ -76,5 +76,10 @@ class UnlockMonitorService : Service() {
             val intent = Intent(context, UnlockMonitorService::class.java)
             ContextCompat.startForegroundService(context, intent)
         }
+
+        fun stop(context: Context) {
+            MindfulPrefs.setMonitoringEnabled(context, false)
+            context.stopService(Intent(context, UnlockMonitorService::class.java))
+        }
     }
 }
