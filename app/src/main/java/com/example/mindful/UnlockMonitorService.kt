@@ -32,6 +32,7 @@ class UnlockMonitorService : Service() {
             startForeground(MindfulNotifications.NOTIFICATION_ID, notification)
         }
         startUnlockDetection()
+        AppSuggestionsProvider.refreshIfStale(applicationContext)
         return START_STICKY
     }
 

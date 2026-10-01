@@ -25,12 +25,20 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.RequestPermission(),
     ) { updateStatus() }
 
+    private val requestUsageAccess = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),
+    ) {
+        updateStatus()
+        AppSuggestionsProvider.refreshIfStale(this)
+    }
+
     private lateinit var statusText: TextView
     private lateinit var enableButton: Button
     private lateinit var overlayButton: Button
     private lateinit var batteryButton: Button
     private lateinit var testPromptButton: Button
     private lateinit var stopPromptsButton: Button
+    private lateinit var usageAccessButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +50,11 @@ class MainActivity : AppCompatActivity() {
         batteryButton = findViewById(R.id.batteryButton)
         testPromptButton = findViewById(R.id.testPromptButton)
         stopPromptsButton = findViewById(R.id.stopPromptsButton)
+        usageAccessButton = findViewById(R.id.usageAccessButton)
 
         overlayButton.setOnClickListener { requestOverlayPermission() }
         batteryButton.setOnClickListener { requestBatteryExemption() }
+        usageAccessButton.setOnClickListener { requestUsageAccess() }
         enableButton.setOnClickListener { startMonitoring() }
         stopPromptsButton.setOnClickListener { stopMonitoring() }
         testPromptButton.setOnClickListener { UnlockPrompt.show(this) }
@@ -63,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         updateStatus()
+        AppSuggestionsProvider.refreshIfStale(this)
     }
 
     private fun requestOverlayPermission() {
@@ -72,6 +83,11 @@ class MainActivity : AppCompatActivity() {
             Uri.parse("package:$packageName"),
         )
         requestOverlayPermission.launch(intent)
+    }
+
+    private fun requestUsageAccess() {
+        if (UsageAccess.hasUsageAccess(this)) return
+        requestUsageAccess.launch(UsageAccess.settingsIntent())
     }
 
     private fun requestBatteryExemption() {
@@ -84,10 +100,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startMonitoring() {
-        if (!Settings.canDrawOverlays(this)) {
-            requestOverlayPermission()
-            return
-        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
             ContextCompat.checkSelfPermission(
                 this,
@@ -113,17 +125,18 @@ class MainActivity : AppCompatActivity() {
         val batteryOk = (getSystemService(POWER_SERVICE) as PowerManager)
             .isIgnoringBatteryOptimizations(packageName)
         val monitoring = MindfulPrefs.isMonitoringEnabled(this)
+        val usageOk = UsageAccess.hasUsageAccess(this)
 
         overlayButton.visibility = if (overlayOk) View.GONE else View.VISIBLE
         batteryButton.visibility = if (batteryOk) View.GONE else View.VISIBLE
-        stopPromptsButton.visibility = if (monitoring && overlayOk) View.VISIBLE else View.GONE
+        usageAccessButton.visibility = if (usageOk) View.GONE else View.VISIBLE
+        stopPromptsButton.visibility = if (monitoring) View.VISIBLE else View.GONE
 
         statusText.text = when {
-            !overlayOk -> getString(R.string.setup_need_overlay)
+            monitoring && !overlayOk -> getString(R.string.setup_active_no_overlay)
             monitoring -> getString(R.string.setup_active)
             else -> getString(R.string.setup_ready)
         }
-        enableButton.isEnabled = overlayOk
         enableButton.text = if (monitoring) {
             getString(R.string.restart_monitoring)
         } else {
