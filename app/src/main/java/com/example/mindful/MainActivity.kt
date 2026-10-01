@@ -84,10 +84,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startMonitoring() {
-        if (!Settings.canDrawOverlays(this)) {
-            requestOverlayPermission()
-            return
-        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
             ContextCompat.checkSelfPermission(
                 this,
@@ -116,14 +112,13 @@ class MainActivity : AppCompatActivity() {
 
         overlayButton.visibility = if (overlayOk) View.GONE else View.VISIBLE
         batteryButton.visibility = if (batteryOk) View.GONE else View.VISIBLE
-        stopPromptsButton.visibility = if (monitoring && overlayOk) View.VISIBLE else View.GONE
+        stopPromptsButton.visibility = if (monitoring) View.VISIBLE else View.GONE
 
         statusText.text = when {
-            !overlayOk -> getString(R.string.setup_need_overlay)
+            monitoring && !overlayOk -> getString(R.string.setup_active_no_overlay)
             monitoring -> getString(R.string.setup_active)
             else -> getString(R.string.setup_ready)
         }
-        enableButton.isEnabled = overlayOk
         enableButton.text = if (monitoring) {
             getString(R.string.restart_monitoring)
         } else {

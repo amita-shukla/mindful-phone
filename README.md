@@ -13,7 +13,11 @@ APKs are **not** stored in the git repo (they bloat history and change every bui
 1. Open the latest release on GitHub and download **`mindful-app.apk`**.
 2. Open the file on your phone (Files app or browser downloads).
 3. Allow **Install unknown apps** for your browser or file manager if Android asks.
-4. Open **Mindful** and complete setup (overlay permission, **Turn on unlock prompts**).
+4. Open **Mindful** → allow **Notifications** if asked → **Turn on unlock prompts**.
+
+**Consumer installs:** Prefer **[Google Play](https://play.google.com/console)** when you publish. GitHub APKs are fine for testers.
+
+**Display over other apps** is **optional**. Mindful works without it via a full-screen prompt on unlock. Sideloaded APKs on Android 13+ may not grant overlay without “restricted settings”—we do not ask for that; use Play or run without overlay.
 
 ### Publish a new release (maintainers)
 
