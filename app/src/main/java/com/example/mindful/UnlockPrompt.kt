@@ -115,7 +115,15 @@ object UnlockPrompt {
         onDismiss: () -> Unit,
     ) {
         val motiveField = root.findViewById<EditText>(R.id.motiveInput)
-        root.findViewById<Button>(R.id.continueButton).setOnClickListener { onDismiss() }
+        root.findViewById<Button>(R.id.continueButton).setOnClickListener {
+            val motive = motiveField.text?.toString()?.trim().orEmpty()
+            if (motive.isEmpty()) {
+                motiveField.error = root.context.getString(R.string.motive_required)
+                return@setOnClickListener
+            }
+            motiveField.error = null
+            onDismiss()
+        }
         root.findViewById<Button>(R.id.sosButton).setOnClickListener { onDismiss() }
         motiveField.post { motiveField.requestFocus() }
     }

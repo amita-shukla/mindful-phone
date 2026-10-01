@@ -12,6 +12,7 @@
     <string name="prompt_subtitle">Take a breath. A short note is enough.</string>
     <string name="motive_hint">What\'s your intention right now?</string>
     <string name="continue_button">Continue</string>
+    <string name="motive_required">Please enter your intention before continuing.</string>
     <string name="sos_button">SOS — skip for now</string>
     <string name="notification_channel_name">Mindful monitoring</string>
     <string name="notification_channel_description">Keeps unlock detection running in the background</string>
