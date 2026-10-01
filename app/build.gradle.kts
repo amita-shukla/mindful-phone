@@ -55,9 +55,8 @@ android {
 android.applicationVariants.configureEach {
     val variant = this
     outputs.configureEach {
-        val suffix = if (variant.buildType.name == "release") "" else "-debug"
-        (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName =
-            "mindful-${variant.versionName}${suffix}.apk"
+        val name = if (variant.buildType.name == "release") "mindful-app.apk" else "mindful-app-debug.apk"
+        (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName = name
     }
 }
 
