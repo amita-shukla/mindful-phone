@@ -10,7 +10,7 @@ APKs are **not** stored in the git repo (they bloat history and change every bui
 
 ### Install the APK on your phone
 
-1. Open the latest release on GitHub and download `app-debug.apk`.
+1. Open the latest release on GitHub and download **`mindful-1.0.0.apk`** (version in the filename matches the release tag).
 2. Open the file on your phone (Files app or browser downloads).
 3. Allow **Install unknown apps** for your browser or file manager if Android asks.
 4. Open **Mindful** and complete setup (overlay permission, **Turn on unlock prompts**).
@@ -24,13 +24,15 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
-The [Release APK workflow](.github/workflows/release-apk.yml) builds `app-debug.apk` and attaches it to the GitHub release.
+The [Release APK workflow](.github/workflows/release-apk.yml) builds a **release** APK and attaches **`mindful-<version>.apk`** to the GitHub release. Creating a release only in the GitHub UI (without pushing a `v*` tag or running the workflow) will **not** add an APK—you must use a tag push or upload the file yourself.
 
 **Option B — manual upload:**
 
 ```bash
-./gradlew assembleDebug
-gh release create v1.0.0 app/build/outputs/apk/debug/app-debug.apk --title "v1.0.0"
+./gradlew assembleRelease
+gh release upload v1.0.0 app/build/outputs/apk/release/mindful-1.0.apk --clobber
+# Or create release and upload in one step:
+# gh release create v1.0.0 app/build/outputs/apk/release/mindful-1.0.apk --title "Mindful 1.0 — Unlock prompts"
 ```
 
 **Option C — build only (no release):** GitHub → **Actions** → **Build and release APK** → **Run workflow**, then download the artifact from the run.
@@ -64,10 +66,16 @@ gh release create v1.0.0 app/build/outputs/apk/debug/app-debug.apk --title "v1.0
 2. Connect a device with **USB debugging** enabled, or use an emulator.
 3. Run the **app** configuration (`Run ▶`).
 
-Debug APK output:
+Release APK (for sharing):
 
 ```text
-app/build/outputs/apk/debug/app-debug.apk
+app/build/outputs/apk/release/mindful-1.0.apk
+```
+
+Debug APK (local development only):
+
+```text
+app/build/outputs/apk/debug/mindful-1.0-debug.apk
 ```
 
 ## Getting started (on your phone)

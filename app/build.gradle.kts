@@ -23,6 +23,8 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            // Sideload / GitHub releases until a Play Store signing key is configured.
+            signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -46,6 +48,16 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+}
+
+@Suppress("DEPRECATION")
+android.applicationVariants.configureEach {
+    val variant = this
+    outputs.configureEach {
+        val suffix = if (variant.buildType.name == "release") "" else "-debug"
+        (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName =
+            "mindful-${variant.versionName}${suffix}.apk"
     }
 }
 
