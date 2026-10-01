@@ -1,6 +1,47 @@
-# mindful
+# Mindful
 
-An Android app that asks you to pause before using your phone. Each time you **unlock** your device, a prompt appears so you can briefly note **why** you picked it up—or tap **SOS** to skip when you're in a hurry.
+An Android app that asks you to pause before using your phone. Each time you **unlock** your device, a prompt appears so you can briefly note **why** you picked it up—or tap **In a hurry — skip** when you need to move on.
+
+## Download
+
+**Recommended:** install from **[GitHub Releases](https://github.com/amita-shukla/mindful-phone/releases)** (APK attached to each release).
+
+APKs are **not** stored in the git repo (they bloat history and change every build). Releases are the right place to host installable builds.
+
+### Install the APK on your phone
+
+1. Open the latest release on GitHub and download `app-debug.apk`.
+2. Open the file on your phone (Files app or browser downloads).
+3. Allow **Install unknown apps** for your browser or file manager if Android asks.
+4. Open **Mindful** and complete setup (overlay permission, **Turn on unlock prompts**).
+
+### Publish a new release (maintainers)
+
+**Option A — tag push (CI uploads the APK):**
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The [Release APK workflow](.github/workflows/release-apk.yml) builds `app-debug.apk` and attaches it to the GitHub release.
+
+**Option B — manual upload:**
+
+```bash
+./gradlew assembleDebug
+gh release create v1.0.0 app/build/outputs/apk/debug/app-debug.apk --title "v1.0.0"
+```
+
+**Option C — build only (no release):** GitHub → **Actions** → **Build and release APK** → **Run workflow**, then download the artifact from the run.
+
+### Other distribution options -- Work in Progress
+
+| Channel | When to use |
+|---------|-------------|
+| **[Google Play](https://play.google.com/console)** | Public app, updates, trust |
+| **[Firebase App Distribution](https://firebase.google.com/docs/app-distribution)** | Private beta testers |
+| **[F-Droid](https://f-droid.org/)** | Free/open source, privacy-focused catalog |
 
 ## What it does
 
@@ -14,7 +55,7 @@ An Android app that asks you to pause before using your phone. Each time you **u
 
 - Android 7.0 (API 24) or higher
 - **Display over other apps** (required for reliable prompts)
-- **Notifications** (Android 13+) so the monitoring service can stay active
+- **Notifications** (Android 13+) so unlock prompts can stay active in the background
 - **Disable battery optimization** (recommended on many OEMs)
 
 ## Getting started (developers)
@@ -31,12 +72,12 @@ app/build/outputs/apk/debug/app-debug.apk
 
 ## Getting started (on your phone)
 
-1. Install and open **mindful**.
-2. Tap **Allow display over other apps** and enable it for mindful.
-3. Optionally tap **Disable battery optimization** and allow it.
+1. Install and open **Mindful** (from a release APK or Android Studio).
+2. Tap **Allow display over other apps** and enable it for Mindful.
+3. Optionally tap **Turn off battery optimization** and allow it.
 4. Allow **Notifications** if Android asks.
-5. Tap **Start monitoring**. You should see a persistent **“Mindful is active”** notification.
-6. Tap **Test prompt now** to confirm the UI appears.
+5. Tap **Turn on unlock prompts**. You should see a persistent **“Mindful is on”** notification.
+6. Tap **Preview unlock** to confirm the UI appears.
 7. Lock the phone, then **unlock fully** (PIN / biometric / pattern). The prompt should show shortly after unlock.
 
 ## How it works
@@ -63,11 +104,11 @@ Unlock detection uses more than one signal because some manufacturers do not del
 
 ## Troubleshooting
 
-**App crashes on “Start monitoring”**  
+**App crashes on “Turn on unlock prompts”**  
 Use a recent build. Android 14+ requires the correct foreground service type when starting the service.
 
-**“Test prompt now” does nothing**  
-Overlay permission is missing or off. Check **Settings → Apps → mindful → Display over other apps**.
+**“Preview unlock” does nothing**  
+Overlay permission is missing or off. Check **Settings → Apps → Mindful → Display over other apps**.
 
 **Test works, but unlock does not show the prompt**  
 Confirm the **Mindful is active** notification is present. Lock the phone completely (screen off), then unlock—not just wake the screen while still on the lock screen. On Samsung, Xiaomi, Oppo, Vivo, etc., also allow **autostart** / **unrestricted background** for mindful.

@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Do not commit APKs — publish via GitHub Releases instead
+*.apk
