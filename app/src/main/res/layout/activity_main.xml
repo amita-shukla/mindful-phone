@@ -44,18 +44,10 @@
         android:text="@string/test_prompt" />
 
     <Button
-        android:id="@+id/overlayButton"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/grant_overlay" />
-
-    <Button
         android:id="@+id/batteryButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:text="@string/grant_battery" />
 </LinearLayout>

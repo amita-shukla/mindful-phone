@@ -17,8 +17,6 @@ APKs are **not** stored in the git repo (they bloat history and change every bui
 
 **Consumer installs:** Prefer **[Google Play](https://play.google.com/console)** when you publish. GitHub APKs are fine for testers.
 
-**Display over other apps** is **optional**. Mindful works without it via a full-screen prompt on unlock. Sideloaded APKs on Android 13+ may not grant overlay without “restricted settings”—we do not ask for that; use Play or run without overlay.
-
 ### Publish a new release (maintainers)
 
 **Option A — tag push (CI uploads the APK):**
@@ -52,7 +50,7 @@ gh release upload v1.0.0 app/build/outputs/apk/release/mindful-app.apk --clobber
 ## What it does
 
 - Runs a lightweight background monitor while enabled
-- Shows a full-screen prompt on unlock (overlay when permitted)
+- Shows a full-screen prompt on unlock
 - Single text field for your intention
 - **SOS — skip for now** for urgent moments: calls, payments
 - No accounts, no cloud—everything stays on your device
@@ -60,7 +58,6 @@ gh release upload v1.0.0 app/build/outputs/apk/release/mindful-app.apk --clobber
 ## Requirements
 
 - Android 7.0 (API 24) or higher
-- **Display over other apps** (required for reliable prompts)
 - **Notifications** (Android 13+) so unlock prompts can stay active in the background
 - **Disable battery optimization** (recommended on many OEMs)
 
@@ -85,12 +82,11 @@ app/build/outputs/apk/debug/mindful-app-debug.apk
 ## Getting started (on your phone)
 
 1. Install and open **Mindful** (from a release APK or Android Studio).
-2. Tap **Allow display over other apps** and enable it for Mindful.
-3. Optionally tap **Turn off battery optimization** and allow it.
-4. Allow **Notifications** if Android asks.
-5. Tap **Turn on unlock prompts**. You should see a persistent **“Mindful is on”** notification.
-6. Tap **Preview unlock** to confirm the UI appears.
-7. Lock the phone, then **unlock fully** (PIN / biometric / pattern). The prompt should show shortly after unlock.
+2. Optionally tap **Turn off battery optimization** and allow it.
+3. Allow **Notifications** if Android asks.
+4. Tap **Turn on unlock prompts**. You should see a persistent **“Mindful is on”** notification.
+5. Tap **Preview prompt** to confirm the UI appears.
+6. Lock the phone, then **unlock fully** (PIN / biometric / pattern). The prompt should show shortly after unlock.
 
 ## How it works
 
@@ -99,7 +95,7 @@ app/build/outputs/apk/debug/mindful-app-debug.apk
 | `MainActivity` | One-time setup: permissions and starting monitoring |
 | `UnlockMonitorService` | Foreground service that keeps unlock detection alive |
 | `UnlockDetection` | Listens for unlock via `USER_PRESENT`, `USER_UNLOCKED`, and keyguard polling after `SCREEN_ON` |
-| `UnlockPrompt` | Shows the prompt as a system overlay (fallback: `PopupActivity`) |
+| `UnlockPrompt` | Launches full-screen `PopupActivity` on unlock |
 | `BootReceiver` | Restarts monitoring after reboot if you already enabled it |
 
 Unlock detection uses more than one signal because some manufacturers do not deliver `ACTION_USER_PRESENT` reliably to background apps.
@@ -108,7 +104,6 @@ Unlock detection uses more than one signal because some manufacturers do not del
 
 | Permission | Why |
 |------------|-----|
-| `SYSTEM_ALERT_WINDOW` | Draw the prompt over the home screen and other apps |
 | `POST_NOTIFICATIONS` | Required notification for the foreground service (Android 13+) |
 | `FOREGROUND_SERVICE` / `FOREGROUND_SERVICE_SPECIAL_USE` | Legitimate background unlock monitoring (Android 14+) |
 | `RECEIVE_BOOT_COMPLETED` | Resume monitoring after device restart |
@@ -119,11 +114,11 @@ Unlock detection uses more than one signal because some manufacturers do not del
 **App crashes on “Turn on unlock prompts”**  
 Use a recent build. Android 14+ requires the correct foreground service type when starting the service.
 
-**“Preview unlock” does nothing**  
-Overlay permission is missing or off. Check **Settings → Apps → Mindful → Display over other apps**.
+**“Preview prompt” does nothing**  
+Reinstall the latest build. If it still fails, check that no other app is blocking full-screen activities.
 
-**Test works, but unlock does not show the prompt**  
-Confirm the **Mindful is active** notification is present. Lock the phone completely (screen off), then unlock—not just wake the screen while still on the lock screen. On Samsung, Xiaomi, Oppo, Vivo, etc., also allow **autostart** / **unrestricted background** for mindful.
+**Preview works, but unlock does not show the prompt**  
+Confirm the **Mindful is on** notification is present. Lock the phone completely (screen off), then unlock—not just wake the screen while still on the lock screen. On Samsung, Xiaomi, Oppo, Vivo, etc., also allow **autostart** / **unrestricted background** for mindful.
 
 **Prompt every time feels too frequent**  
 This is intentional for v1; saving motives or cooldowns would be a future enhancement.

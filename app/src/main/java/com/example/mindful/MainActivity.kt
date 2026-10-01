@@ -17,17 +17,12 @@ import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
-    private val requestOverlayPermission = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult(),
-    ) { updateStatus() }
-
     private val requestNotificationPermission = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
     ) { updateStatus() }
 
     private lateinit var statusText: TextView
     private lateinit var enableButton: Button
-    private lateinit var overlayButton: Button
     private lateinit var batteryButton: Button
     private lateinit var testPromptButton: Button
     private lateinit var stopPromptsButton: Button
@@ -38,12 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         statusText = findViewById(R.id.statusText)
         enableButton = findViewById(R.id.enableButton)
-        overlayButton = findViewById(R.id.overlayButton)
         batteryButton = findViewById(R.id.batteryButton)
         testPromptButton = findViewById(R.id.testPromptButton)
         stopPromptsButton = findViewById(R.id.stopPromptsButton)
 
-        overlayButton.setOnClickListener { requestOverlayPermission() }
         batteryButton.setOnClickListener { requestBatteryExemption() }
         enableButton.setOnClickListener { startMonitoring() }
         stopPromptsButton.setOnClickListener { stopMonitoring() }
@@ -63,15 +56,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         updateStatus()
-    }
-
-    private fun requestOverlayPermission() {
-        if (Settings.canDrawOverlays(this)) return
-        val intent = Intent(
-            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-            Uri.parse("package:$packageName"),
-        )
-        requestOverlayPermission.launch(intent)
     }
 
     private fun requestBatteryExemption() {
@@ -105,17 +89,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateStatus() {
-        val overlayOk = Settings.canDrawOverlays(this)
         val batteryOk = (getSystemService(POWER_SERVICE) as PowerManager)
             .isIgnoringBatteryOptimizations(packageName)
         val monitoring = MindfulPrefs.isMonitoringEnabled(this)
 
-        overlayButton.visibility = if (overlayOk) View.GONE else View.VISIBLE
         batteryButton.visibility = if (batteryOk) View.GONE else View.VISIBLE
         stopPromptsButton.visibility = if (monitoring) View.VISIBLE else View.GONE
 
         statusText.text = when {
-            monitoring && !overlayOk -> getString(R.string.setup_active_no_overlay)
             monitoring -> getString(R.string.setup_active)
             else -> getString(R.string.setup_ready)
         }

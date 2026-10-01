@@ -1,62 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/promptRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E6000000"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:background="@color/white"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingLeft="@dimen/prompt_padding_horizontal"
+        android:paddingRight="@dimen/prompt_padding_horizontal"
+        android:paddingTop="@dimen/prompt_padding_vertical"
+        android:paddingBottom="@dimen/prompt_padding_vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
             android:text="@string/prompt_title"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/prompt_title_subtitle_gap"
+            android:lineSpacingExtra="2dp"
             android:text="@string/prompt_subtitle"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textColor="@color/prompt_subtitle"
+            android:textSize="15sp" />
 
         <EditText
             android:id="@+id/motiveInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/prompt_subtitle_field_gap"
+            android:background="@drawable/prompt_field_background"
+            android:gravity="top|start"
             android:hint="@string/motive_hint"
             android:imeOptions="actionDone"
             android:inputType="textCapSentences|textMultiLine"
-            android:minLines="2"
+            android:minHeight="@dimen/prompt_field_min_height"
+            android:padding="16dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/hint_text_color" />
+            android:textColorHint="@color/hint_text_color"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/continueButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/continue_button" />
+            android:layout_height="@dimen/prompt_button_height"
+            android:layout_marginTop="@dimen/prompt_field_button_gap"
+            android:text="@string/continue_button"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/sosButton"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/prompt_button_sos_gap"
+            android:minHeight="@dimen/prompt_button_height"
             android:text="@string/sos_button"
-            android:textColor="@color/colorAccent" />
+            android:textAllCaps="false"
+            android:textColor="@color/prompt_sos"
+            android:textSize="15sp" />
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
