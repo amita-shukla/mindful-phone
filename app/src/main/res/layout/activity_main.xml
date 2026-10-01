@@ -20,6 +20,20 @@
         android:textSize="15sp" />
 
     <Button
+        android:id="@+id/overlayButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/grant_overlay" />
+
+    <Button
+        android:id="@+id/batteryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/grant_battery" />
+
+    <Button
         android:id="@+id/enableButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,12 +56,4 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/test_prompt" />
-
-    <Button
-        android:id="@+id/batteryButton"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/grant_battery" />
 </LinearLayout>

@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Mindful</string>
     <string name="setup_heading">A pause before you reach for your phone</string>
-    <string name="setup_ready">Turn on unlock prompts below. You\'ll get a full-screen prompt each time you unlock your phone.</string>
+    <string name="setup_need_overlay">Allow Mindful to appear over other apps so unlock prompts can show every time.</string>
+    <string name="setup_ready">You\'re set up. Turn on unlock prompts to see one each time you unlock your phone.</string>
     <string name="setup_active">Unlock prompts are on. Lock your phone, then unlock to try it.</string>
-    <string name="grant_battery">Optional: turn off battery optimization</string>
+    <string name="grant_overlay">Allow display over other apps</string>
+    <string name="grant_battery">Turn off battery optimization (recommended)</string>
     <string name="enable_monitoring">Turn on unlock prompts</string>
     <string name="restart_monitoring">Restart unlock prompts</string>
     <string name="stop_unlock_prompts">Turn off unlock prompts</string>
