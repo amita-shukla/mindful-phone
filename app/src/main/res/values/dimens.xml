@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="prompt_padding_horizontal">28dp</dimen>
+    <dimen name="prompt_padding_vertical">40dp</dimen>
+    <dimen name="prompt_title_subtitle_gap">12dp</dimen>
+    <dimen name="prompt_subtitle_field_gap">28dp</dimen>
+    <dimen name="prompt_field_button_gap">32dp</dimen>
+    <dimen name="prompt_button_sos_gap">16dp</dimen>
+    <dimen name="prompt_field_min_height">112dp</dimen>
+    <dimen name="prompt_button_height">52dp</dimen>
+</resources>

@@ -7,9 +7,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Popup Theme -->
-    <style name="PopupTheme" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowMinWidthMajor">75%</item>
-        <item name="android:windowMinWidthMinor">75%</item>
+    <!-- Full-screen unlock prompt -->
+    <style name="PopupTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 </resources>

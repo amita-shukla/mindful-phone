@@ -10,6 +10,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="hint_text_color">#CCCCCC</color>
+    <color name="hint_text_color">#9E9E9E</color>
+    <color name="prompt_subtitle">#616161</color>
+    <color name="prompt_sos">#5C6BC0</color>
 <!--    <color name="hint_text_color">#808080</color>-->
 </resources>

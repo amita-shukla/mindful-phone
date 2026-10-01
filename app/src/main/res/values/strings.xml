@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Mindful</string>
     <string name="setup_heading">A pause before you reach for your phone</string>
-    <string name="setup_ready">Turn on unlock prompts below. Mindful uses a normal full-screen prompt on unlock—no “restricted settings” or overlay required.</string>
+    <string name="setup_ready">Turn on unlock prompts below. You\'ll get a full-screen prompt each time you unlock your phone.</string>
     <string name="setup_active">Unlock prompts are on. Lock your phone, then unlock to try it.</string>
     <string name="setup_active_no_overlay">Unlock prompts are on. Optional: allow display over other apps if prompts feel inconsistent on your phone.</string>
     <string name="grant_overlay">Optional: allow display over other apps</string>
