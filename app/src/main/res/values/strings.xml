@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">mindful</string>
+    <string name="setup_heading">Pause before you scroll</string>
+    <string name="setup_need_overlay">Grant “Display over other apps” so the unlock prompt can appear reliably.</string>
+    <string name="setup_ready">Permissions look good. Turn on monitoring to show a prompt each time you unlock your phone.</string>
+    <string name="setup_active">Monitoring is on. Lock your phone, then unlock to try the prompt.</string>
+    <string name="grant_overlay">Allow display over other apps</string>
+    <string name="grant_battery">Disable battery optimization (recommended)</string>
+    <string name="enable_monitoring">Start monitoring</string>
+    <string name="restart_monitoring">Restart monitoring</string>
+    <string name="prompt_title">Why did you pick up your phone?</string>
+    <string name="prompt_subtitle">Take a breath. A short note is enough.</string>
+    <string name="motive_hint">What\'s your intention right now?</string>
+    <string name="continue_button">Continue</string>
+    <string name="sos_button">SOS — skip for now</string>
+    <string name="notification_channel_name">Mindful monitoring</string>
+    <string name="notification_channel_description">Keeps unlock detection running in the background</string>
+    <string name="notification_title">Mindful is active</string>
+    <string name="notification_text">You\'ll see a prompt when you unlock your phone</string>
+    <string name="test_prompt">Test prompt now</string>
 </resources>
