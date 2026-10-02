@@ -4,9 +4,7 @@ Mindful is an Android app that asks you to pause before using your phone. Each t
 
 ## Download
 
-**Recommended:** install from **[GitHub Releases](https://github.com/amita-shukla/mindful-phone/releases)** (APK attached to each release).
-
-APKs are **not** stored in the git repo (they bloat history and change every build). Releases are the right place to host installable builds.
+Install from **[GitHub Releases](https://github.com/amita-shukla/mindful-phone/releases)** (APK attached to each release).
 
 ### Install the APK on your phone
 
@@ -15,7 +13,7 @@ APKs are **not** stored in the git repo (they bloat history and change every bui
 3. Allow **Install unknown apps** for your browser or file manager if Android asks.
 4. Open **Mindful** → **Allow display over other apps** → allow **Notifications** if asked → **Turn on unlock prompts**.
 
-**Consumer installs:** Prefer **[Google Play](https://play.google.com/console)** when you publish. Play installs grant overlay permission through normal system settings (not sideload “restricted settings”). GitHub APKs are fine for testers.
+**Future - Consumer installs:** Prefer **[Google Play](https://play.google.com/console)** when you publish. Play installs grant overlay permission through normal system settings (not sideload “restricted settings”). GitHub APKs as long is in development mode
 
 ### Publish a new release (maintainers)
 
@@ -38,14 +36,6 @@ gh release upload v1.0.0 app/build/outputs/apk/release/mindful-app.apk --clobber
 ```
 
 **Option C — build only (no release):** GitHub → **Actions** → **Build and release APK** → **Run workflow**, then download the artifact from the run.
-
-### Other distribution options -- Work in Progress
-
-| Channel | When to use |
-|---------|-------------|
-| **[Google Play](https://play.google.com/console)** | Public app, updates, trust |
-| **[Firebase App Distribution](https://firebase.google.com/docs/app-distribution)** | Private beta testers |
-| **[F-Droid](https://f-droid.org/)** | Free/open source, privacy-focused catalog |
 
 ## What it does
 
