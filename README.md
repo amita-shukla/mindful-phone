@@ -1,6 +1,6 @@
 # Mindful
-
-An Android app that asks you to pause before using your phone. Each time you **unlock** your device, a prompt appears so you can briefly note **why** you picked it up—or tap **In a hurry — skip** when you need to move on.
+### Do you catch yourself picking up your phone without even realizing it?
+Mindful is an Android app that asks you to pause before using your phone. Each time you **unlock** your device, a prompt appears so you can briefly note **why** you picked it up—or tap **In a hurry — skip** when you need to move on.
 
 ## Download
 
